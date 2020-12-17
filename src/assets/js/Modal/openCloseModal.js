@@ -69,7 +69,7 @@ function removeModalEventListeners(openModal) {
     closeModal.removeEventListener("click", hiddeModal);
     window.removeEventListener("keyup", hiddeModal);
     modal.removeEventListener("click", hiddeModal);
-    if(openModal === "Audio Output") {
+    if(openModal === "Modules") {
         const modulesTypes = document.querySelectorAll(".modules--type");
         modulesTypes.forEach(e => {
             e.removeEventListener("click", createModule);
