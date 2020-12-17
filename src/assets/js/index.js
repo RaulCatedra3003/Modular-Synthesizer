@@ -7,7 +7,6 @@ import {openHelpSecctionModal} from "./Modal/menuModals/helpModal.js";
 import {openAboutSecctionModal} from "./Modal/menuModals/aboutModal.js";
 
 
-
 const hamburguerButton = document.getElementById("hamburguerButton");
 const newSecction = document.getElementById("NEW");
 const savedSecction = document.getElementById("SAVED");
