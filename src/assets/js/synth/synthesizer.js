@@ -1,0 +1,3 @@
+export {arrayOfModules}
+
+var arrayOfModules = [];
