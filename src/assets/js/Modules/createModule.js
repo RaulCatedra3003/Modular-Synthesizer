@@ -2,6 +2,7 @@ export {createModule};
 
 import {createAudioOutputModule} from "./modulesType/audioOutput.js";
 import {createOscilatorModule} from "./modulesType/oscilator.js";
+import {createPotenciometerModule} from "./modulesType/potenciometer.js"
 import {removeModalEventListeners, addPrincipalEventListeners} from "../Modal/openCloseModal.js";
 
 function createModule(e) {
@@ -17,7 +18,7 @@ function createModule(e) {
         addPrincipalEventListeners();
         modal.classList.toggle("hidden");
     } else if(e.target.dataset.modulename === "Potenciometer") {
-        console.log("creamos un potenciometro");
+        createPotenciometerModule();
         removeModalEventListeners("Potenciometer");
         addPrincipalEventListeners();
         modal.classList.toggle("hidden");

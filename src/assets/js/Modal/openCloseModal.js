@@ -6,6 +6,7 @@ import {openHelpSecctionModal} from "./menuModals/helpModal.js";
 import {openAboutSecctionModal} from "./menuModals/aboutModal.js";
 import {showMenu} from "../Menu/responsiveMenu.js";
 import {createModule} from "../Modules/createModule.js";
+import {clearMainContent} from "../buttons/clear.js"
 
 
 const modal = document.getElementById("modal--section");
@@ -14,6 +15,7 @@ const newSecction = document.getElementById("NEW");
 const savedSecction = document.getElementById("SAVED");
 const helpSecction = document.getElementById("HELP");
 const aboutSecction = document.getElementById("ABOUT");
+const clearButton = document.getElementById("clear");
 
 
 function showModal() {
@@ -44,14 +46,16 @@ function addPrincipalEventListeners() {
     helpSecction.addEventListener("click", openHelpSecctionModal);
     aboutSecction.addEventListener("click", openAboutSecctionModal);
     hamburguerButton.addEventListener("click", showMenu);
+    clearButton.addEventListener("click", clearMainContent);
 }
 
 function removePincipalEventListeners() {
-    newSecction.addEventListener("click", openNewSecctionModal);
-    savedSecction.addEventListener("click", openSavedSecctionModal);
-    helpSecction.addEventListener("click", openHelpSecctionModal);
-    aboutSecction.addEventListener("click", openAboutSecctionModal);
-    hamburguerButton.addEventListener("click", showMenu);
+    newSecction.removeEventListener("click", openNewSecctionModal);
+    savedSecction.removeEventListener("click", openSavedSecctionModal);
+    helpSecction.removeEventListener("click", openHelpSecctionModal);
+    aboutSecction.removeEventListener("click", openAboutSecctionModal);
+    hamburguerButton.removeEventListener("click", showMenu);
+    clearButton.removeEventListener("click", clearMainContent);
 }
 
 

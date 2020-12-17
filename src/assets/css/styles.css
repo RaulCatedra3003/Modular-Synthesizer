@@ -60,6 +60,7 @@ body {
 /* Content style rules */
 header {
     background-color:  #494949;
+    color:#972020;
 }
 .title {
     font-size: 2em;
@@ -179,6 +180,28 @@ header {
     cursor: pointer;
     background-color: rgba(240, 240, 240, 0.2);
 }
+.main--buttons {
+    position: fixed;
+    z-index: 10;
+    top: 89%;
+    right: 10px;
+}
+.button {
+    border: none;
+    outline: none;
+    background-color: #eeeeee;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 15px;
+    margin: 0 10px;
+    font-family: 'Lobster';
+    color:  #494949;
+}
+.button:hover {
+    cursor: pointer;
+    background-color: #acacac;
+    border: 2px solid #494949;
+}
 
 /* Audio modules style rules */
 
@@ -204,6 +227,17 @@ header {
     height: 200px;
     cursor: move;
 }
+.potenciometer {
+    position: absolute;
+    background-color:  #494949;
+    border: 2px solid #6d6d6d;
+    border-radius: 15px;
+    color: #eeeeee;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    cursor: move;
+}
 .module--name {
     padding: 5px 0;
     position: relative;
@@ -225,6 +259,14 @@ header {
     top: 140px;
     text-align: left;
 }
+.module--output__potenciometer {
+    font-family: 'Inconsolata';
+    font-size: 10px;
+    position: absolute;
+    right: -12px;
+    top: 70px;
+    text-align: left;
+}
 .module--input__L {
     margin-bottom: 20px;
 }
@@ -232,7 +274,11 @@ header {
     display: flex;
     flex-direction: row;
 }
-.connection {
+.output--list {
+    display: flex;
+    flex-direction: row;
+}
+.connection--input {
     width: 10px;
     height: 10px;
     background-color: #30f830;
@@ -241,6 +287,28 @@ header {
     border-radius: 6px;
     outline: none;
     cursor: pointer;
+}
+.connection--output {
+    width: 10px;
+    height: 10px;
+    background-color: #f83030;
+    margin-right: 5px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+.outputName {
+    margin: 0 5px;
+}
+.input--potenciometer {
+    position: relative;
+    max-width: 80%;
+    max-height: 20px;
+    top: 10px;
+}
+.input--potenciometer:hover {
+    cursor: grab;
 }
 
 @media screen and (min-width: 780px) {

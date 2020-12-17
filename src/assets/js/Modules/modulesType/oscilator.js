@@ -1,6 +1,6 @@
 export {createOscilatorModule};
 
-import {makeItDragable} from "../dragableModules.js"
+import {makeItDragable} from "../dragableModules.js";
 
 function createOscilatorModule() {
     const mainContent = document.getElementById("main--content");
@@ -12,7 +12,7 @@ function createOscilatorModule() {
     <h2 class="module--name">Oscilator</h2>
     <section class="module--inputs__oscilator">
         <ul class="input--list">
-            <li><button class="connection"></button></li>
+            <li><button class="connection--input"></button></li>
             <li>Frequency</li>
         </ul>
     </section>`
