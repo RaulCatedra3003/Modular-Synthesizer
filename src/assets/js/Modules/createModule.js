@@ -9,17 +9,17 @@ function createModule(e) {
     const modal = document.getElementById("modal--section");
     if(e.target.dataset.modulename === "Audio Output") {
         createAudioOutputModule();
-        removeModalEventListeners("Audio Output");
+        removeModalEventListeners("Modules");
         addPrincipalEventListeners();
         modal.classList.toggle("hidden");
     } else if(e.target.dataset.modulename === "Oscilator") {
         createOscilatorModule();
-        removeModalEventListeners("Oscilator");
+        removeModalEventListeners("Modules");
         addPrincipalEventListeners();
         modal.classList.toggle("hidden");
     } else if(e.target.dataset.modulename === "Potenciometer") {
         createPotenciometerModule();
-        removeModalEventListeners("Potenciometer");
+        removeModalEventListeners("Modules");
         addPrincipalEventListeners();
         modal.classList.toggle("hidden");
     }
