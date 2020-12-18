@@ -26,12 +26,12 @@ class Oscilator {
         this.name = name;
         this.id = id;
         this.type = type;
-        this.waveType = "Triangle";
+        this.waveType = "Sine";
         this.module = context.createOscillator();
         this.htmlCode = `
-        <h2 class="module--name">${this.name}</h2>
+        <h2 class="module--name" id="oscilator${oscilatorCounter}--name">${this.name}</h2>
         <h2 class="wave--title">Wave Type</h2>
-        <h2 class="wave--name">${this.waveType}</h2>
+        <h2 class="wave--name" id="oscilator${oscilatorCounter}--waveName">${this.waveType}</h2>
         <section class="module--inputs__oscilator">
             <ul class="input--list">
                 <li><button class="connection--input"></button></li>
@@ -60,7 +60,7 @@ class Oscilator {
         section.classList.add("module");
         section.setAttribute("id", this.id);
         section.dataset.name = this.name;
-        section.dataset.wave = this.waveType.toLowerCase();
+        section.dataset.wave = this.waveType;
         section.innerHTML = this.htmlCode;
         return section;
     }

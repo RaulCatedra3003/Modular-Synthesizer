@@ -1,10 +1,13 @@
 export {showOscilatorModal, changeOscilatorPropertyes, hiddeOscilatorModal};
 
 import {showModal, removeModalEventListeners, addPrincipalEventListeners} from "../openCloseModal.js";
+import {arrayOfModules} from "../../synth/synthesizer.js";
 
+let elementTarguet;
 
 function showOscilatorModal(e) {
     if(e.target.getAttribute("id") !== null) {
+        elementTarguet = e.target;
         const modalContent = document.getElementById("modal--content");
         showModal();
         modalContent.innerHTML = "";
@@ -15,10 +18,10 @@ function showOscilatorModal(e) {
             <input type="text" id="oscilatorName" class="input" maxlength="15">
             <label for="oscilatorWaveType" class="label">Wave type:</label>
             <select name="oscilatorWaveType" id="oscilatorWaveType" class="input">
-                <option value="sine" class="waveOption">Sine</option>
-                <option value="square" class="waveOption">Square</option>
-                <option value="triangle" class="waveOption">Triangle</option>
-                <option value="sawtooth" class="waveOption">Sawtooth</option>
+                <option value="Sine" class="waveOption">Sine</option>
+                <option value="Square" class="waveOption">Square</option>
+                <option value="Triangle" class="waveOption">Triangle</option>
+                <option value="Sawtooth" class="waveOption">Sawtooth</option>
             </select>
             <fieldset class="form--buttons">
                 <button type="button" class="modal--buttons" id="save">Save</button>
@@ -42,7 +45,21 @@ function showOscilatorModal(e) {
 
 function changeOscilatorPropertyes() {
     const modal = document.getElementById("modal--section");
-    console.log("aqui estoy");
+    const moduleName = document.getElementById(`${elementTarguet.id}--name`);
+    const moduleWaveName = document.getElementById(`${elementTarguet.id}--waveName`);
+    const nInput = document.getElementById("oscilatorName");
+    const nWInput = document.getElementById("oscilatorWaveType");
+    moduleName.innerHTML = `${nInput.value}`;
+    moduleWaveName.innerHTML = `${nWInput.value}`;
+    elementTarguet.dataset.name = `${nInput.value}`;
+    elementTarguet.dataset.wave = `${nWInput.value}`;
+    arrayOfModules.forEach(e => {
+        if(e.id = elementTarguet.id) {
+            e.name = `${nInput.value}`;
+            e.waveType = `${nWInput.value}`;
+            e.changeWaveForm;
+        }
+    })
     removeModalEventListeners("oscilator");
     addPrincipalEventListeners();
     modal.classList.toggle("hidden");
