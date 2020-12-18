@@ -2,6 +2,7 @@ export {createAudioOutputModule};
 
 import {addDraggableListeners} from "../dragableModules.js";
 import {arrayOfModules} from "../../synth/synthesizer.js";
+import {showAudioOutputModal} from "../../Modal/modulesModals/audioOutputModal.js";
 
 function createAudioOutputModule(context) {
     const mainContent = document.getElementById("main--content");
@@ -9,10 +10,12 @@ function createAudioOutputModule(context) {
     arrayOfModules.push(newModule);
     const section = newModule.moduleShow;
     mainContent.appendChild(section);
+    const audioOutput = document.getElementById("audioOutput");
     const modules = document.querySelectorAll(".module");
     modules.forEach(e => {
         addDraggableListeners(e.getAttribute("id"));
     })
+    audioOutput.addEventListener("dblclick", showAudioOutputModal);
 }
 
 class AudioOutput {
@@ -21,7 +24,7 @@ class AudioOutput {
         this.type = type;
         this.module = context.createStereoPanner();
         this.htmlCode = `
-        <h2 class="module--name">${this.name}</h2>
+        <h2 class="module--name" id="audioOutput--name">${this.name}</h2>
         <section class="module--inputs__audio--output">
             <section class="module--input__L">
                 <ul class="input--list">
@@ -53,6 +56,7 @@ class AudioOutput {
         section.classList.add("audio--output");
         section.classList.add("module");
         section.setAttribute("id", "audioOutput");
+        section.dataset.name = this.name;
         section.innerHTML = this.htmlCode;
         return section;
     }

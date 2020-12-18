@@ -13,7 +13,7 @@ function showOscilatorModal(e) {
         modalContent.innerHTML = "";
         modalContent.innerHTML = `
         <h2 class="modal--title">${e.target.dataset.name}</h2>
-        <form class="oscilatorForm">
+        <form class="form">
             <label for="oscilatorName" class="label">Module name:</label>
             <input type="text" id="oscilatorName" class="input" maxlength="15">
             <label for="oscilatorWaveType" class="label">Wave type:</label>

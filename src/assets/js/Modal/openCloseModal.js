@@ -6,8 +6,9 @@ import {openHelpSecctionModal} from "./menuModals/helpModal.js";
 import {openAboutSecctionModal} from "./menuModals/aboutModal.js";
 import {showMenu} from "../Menu/responsiveMenu.js";
 import {createModule} from "../Modules/createModule.js";
-import {clearMainContent} from "../buttons/clear.js"
-import {changeOscilatorPropertyes, hiddeOscilatorModal} from "./modulesModals/oscilatorModal.js"
+import {clearMainContent} from "../buttons/clear.js";
+import {changeOscilatorPropertyes, hiddeOscilatorModal} from "./modulesModals/oscilatorModal.js";
+import {changeAudioOutputPropertyes, hiddeAudioOutputModal} from "./modulesModals/audioOutputModal.js";
 
 
 const modal = document.getElementById("modal--section");
@@ -80,6 +81,11 @@ function removeModalEventListeners(openModal) {
         const cancel = document.getElementById("cancel");
         save.removeEventListener("click", changeOscilatorPropertyes);
         cancel.removeEventListener("click", hiddeOscilatorModal);
+    } else if (openModal === "audioOutput") {
+        const save = document.getElementById("save");
+        const cancel = document.getElementById("cancel");
+        save.removeEventListener("click", changeAudioOutputPropertyes);
+        cancel.removeEventListener("click", hiddeAudioOutputModal);
     }
 }
 

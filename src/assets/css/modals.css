@@ -61,7 +61,7 @@
 
 /* Osciloscope Modal styles */
 
-.oscilatorForm {
+.form {
     display: flex;
     flex-direction: column;
 }
