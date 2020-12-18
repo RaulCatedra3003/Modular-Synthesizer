@@ -1,28 +1,25 @@
-export {makeItDragable};
+export {addDraggableListeners};
 
-var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
-function makeItDragable(e) {
-    if(e.target.dataset.dragable === "true") {
-        e = e || window.event;
-        e.preventDefault();
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
+function addDraggableListeners(elementSelector) {
+    var dragStartX, dragStartY;
+    var objInitLeft, objInitTop;
+    var inDrag = false;
+    var dragTarget = document.querySelector(`#${elementSelector}`);
+    dragTarget.addEventListener("mousedown", function (e) {
+        inDrag = true;
+        objInitLeft = dragTarget.offsetLeft;
+        objInitTop = dragTarget.offsetTop;
+        dragStartX = e.pageX;
+        dragStartY = e.pageY;
+    });
+    document.addEventListener("mousemove", function (e) {
+    if (!inDrag) {
+        return;
     }
-}
-function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    e.target.style.top = (e.target.offsetTop - pos2) + "px";
-    e.target.style.left = (e.target.offsetLeft - pos1) + "px";
-}
-function closeDragElement() {
-    document.onmouseup = null;
-    document.onmousemove = null;
+    dragTarget.style.left = objInitLeft + e.pageX - dragStartX + "px";
+    dragTarget.style.top = objInitTop + e.pageY - dragStartY + "px";
+    });
+    document.addEventListener("mouseup", function (e) {
+        inDrag = false;
+    });
 }

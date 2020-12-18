@@ -1,18 +1,17 @@
 export {createAudioOutputModule};
 
-import {makeItDragable} from "../dragableModules.js";
+import {addDraggableListeners} from "../dragableModules.js";
 import {arrayOfModules} from "../../synth/synthesizer.js";
 
 function createAudioOutputModule(context) {
     const mainContent = document.getElementById("main--content");
     const newModule = new AudioOutput(context);
     arrayOfModules.push(newModule);
-    console.log(arrayOfModules);
     const section = newModule.moduleShow;
     mainContent.appendChild(section);
     const modules = document.querySelectorAll(".module");
     modules.forEach(e => {
-        e.addEventListener("mousedown", makeItDragable);
+        addDraggableListeners(e.getAttribute("id"));
     })
 }
 
@@ -53,7 +52,7 @@ class AudioOutput {
         const section = document.createElement("section");
         section.classList.add("audio--output");
         section.classList.add("module");
-        section.dataset.dragable = "true";
+        section.setAttribute("id", "audioOutput");
         section.innerHTML = this.htmlCode;
         return section;
     }
