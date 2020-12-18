@@ -71,21 +71,16 @@ function removeModalEventListeners(openModal) {
     closeModal.removeEventListener("click", hiddeModal);
     window.removeEventListener("keyup", hiddeModal);
     modal.removeEventListener("click", hiddeModal);
-    if(openModal === "modules") {
+    if(openModal === "menuModules") {
         const modulesTypes = document.querySelectorAll(".modules--type");
         modulesTypes.forEach(e => {
             e.removeEventListener("click", createModule);
         });
-    } else if(openModal === "oscilator") {
+    } else if(openModal === "modulesModal") {
         const save = document.getElementById("save");
         const cancel = document.getElementById("cancel");
         save.removeEventListener("click", changeOscilatorPropertyes);
         cancel.removeEventListener("click", hiddeOscilatorModal);
-    } else if (openModal === "audioOutput") {
-        const save = document.getElementById("save");
-        const cancel = document.getElementById("cancel");
-        save.removeEventListener("click", changeAudioOutputPropertyes);
-        cancel.removeEventListener("click", hiddeAudioOutputModal);
     }
 }
 

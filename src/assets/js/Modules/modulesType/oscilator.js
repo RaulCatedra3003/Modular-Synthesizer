@@ -2,7 +2,7 @@ export {createOscilatorModule, oscilatorCounter};
 
 import {addDraggableListeners} from "../dragableModules.js";
 import {arrayOfModules} from "../../synth/synthesizer.js";
-import {showOscilatorModal} from "../../Modal/modulesModals/oscilatorModal.js"
+import {showOscilatorModal} from "../../Modal/modulesModals/oscilatorModal.js";
 
 let oscilatorCounter = 1;
 

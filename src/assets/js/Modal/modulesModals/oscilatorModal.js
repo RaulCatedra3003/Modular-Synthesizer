@@ -59,14 +59,14 @@ function changeOscilatorPropertyes() {
             e.waveType = `${nWInput.value}`;
             e.changeWaveForm;
         }
-    })
-    removeModalEventListeners("oscilator");
+    });
+    removeModalEventListeners("modulesModal");
     addPrincipalEventListeners();
     modal.classList.toggle("hidden");
 }
 function hiddeOscilatorModal() {
     const modal = document.getElementById("modal--section");
-    removeModalEventListeners("oscilator");
+    removeModalEventListeners("modulesModal");
     addPrincipalEventListeners();
     modal.classList.toggle("hidden");
 }
