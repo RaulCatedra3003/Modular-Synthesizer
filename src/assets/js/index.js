@@ -1,4 +1,6 @@
-import "../css/styles.css"
+import "../css/styles.css";
+import "../css/modals.css";
+import "../css/audioModules.css";
 
 import {showMenu} from "./Menu/responsiveMenu.js";
 import {openNewSecctionModal} from "./Modal/menuModals/newModuleModal.js";

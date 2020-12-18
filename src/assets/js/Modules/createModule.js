@@ -27,7 +27,7 @@ function createModule(e) {
         }
         if(audioOutputExist === true) {
             alert("You can only create one Audio Output");
-            removeModalEventListeners("Modules");
+            removeModalEventListeners("modules");
             addPrincipalEventListeners();
             modal.classList.toggle("hidden");
         } else {
@@ -38,12 +38,12 @@ function createModule(e) {
         }
     } else if(e.target.dataset.modulename === "Oscilator") {
         createOscilatorModule(audioCtx);
-        removeModalEventListeners("Modules");
+        removeModalEventListeners("modules");
         addPrincipalEventListeners();
         modal.classList.toggle("hidden");
     } else if(e.target.dataset.modulename === "Potenciometer") {
         createPotenciometerModule();
-        removeModalEventListeners("Modules");
+        removeModalEventListeners("modules");
         addPrincipalEventListeners();
         modal.classList.toggle("hidden");
     }

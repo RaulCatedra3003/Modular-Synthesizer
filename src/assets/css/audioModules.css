@@ -1,0 +1,133 @@
+.audio--output {
+    position: absolute;
+    background-color:  #494949;
+    border: 2px solid #6d6d6d;
+    border-radius: 15px;
+    color: #eeeeee;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    cursor: move;
+}
+.oscilator {
+    position: absolute;
+    background-color:  #494949;
+    border: 2px solid #6d6d6d;
+    border-radius: 15px;
+    color: #eeeeee;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    cursor: move;
+}
+.potenciometer {
+    position: absolute;
+    background-color:  #494949;
+    border: 2px solid #6d6d6d;
+    border-radius: 15px;
+    color: #eeeeee;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    cursor: move;
+}
+.module--name {
+    padding: 5px 0;
+    position: relative;
+    font-family: 'Shadows Into Light';
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    font-size: 1.2em;
+}
+.wave--title {
+    padding: 5px 0;
+    position: relative;
+    font-family: 'Shadows Into Light';
+    margin: 20px auto 5px auto;
+    font-size: .9em;
+    width: fit-content;
+    height: fit-content;
+}
+.wave--name {
+    font-family: 'Inconsolata';
+    font-size: 15px;
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    font-size: .8em;
+}
+.module--inputs__audio--output {
+    font-family: 'Inconsolata';
+    font-size: 10px;
+    position: absolute;
+    left: -5px;
+    top: 40px;
+    text-align: left;
+}
+.module--inputs__oscilator {
+    font-family: 'Inconsolata';
+    font-size: 10px;
+    position: absolute;
+    left: -5px;
+    top: 140px;
+    text-align: left;
+}
+.module--output__potenciometer {
+    font-family: 'Inconsolata';
+    font-size: 10px;
+    position: absolute;
+    right: -5px;
+    top: 70px;
+    text-align: left;
+}
+.module--output__oscilator {
+    font-family: 'Inconsolata';
+    font-size: 10px;
+    position: absolute;
+    right: -5px;
+    top: 140px;
+    text-align: left;
+}
+.module--input__L {
+    margin-bottom: 20px;
+}
+.input--list {
+    display: flex;
+    flex-direction: row;
+}
+.output--list {
+    display: flex;
+    flex-direction: row;
+}
+.connection--input {
+    width: 10px;
+    height: 10px;
+    background-color: #30f830;
+    margin-right: 5px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+.connection--output {
+    width: 10px;
+    height: 10px;
+    background-color: #f83030;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+.outputName {
+    margin: 0 5px 0 0;
+}
+.input--potenciometer {
+    position: relative;
+    max-width: 80%;
+    max-height: 20px;
+    top: 10px;
+}
+.input--potenciometer:hover {
+    cursor: grab;
+}

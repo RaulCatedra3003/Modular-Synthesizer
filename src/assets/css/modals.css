@@ -1,0 +1,90 @@
+/* All modals styles */
+
+.modal--section {
+	background-color: rgba(184, 184, 184, 0.7);
+	width: 100%;
+	position: fixed;
+	z-index: 1000;
+	height: 100%;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+.add--event {
+	background-color: #494949;
+	width: fit-content;
+	padding-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	transition: transform 1s;
+	transform: translateY(0%);
+}
+.closed--modal {
+	width: 100%;
+	text-align: right;
+	margin: 5px 15px 0 0;
+    cursor: pointer;
+    color: #eeeeee;
+}
+.hidden {
+    display: none;
+}
+.modal--content {
+    color: #eeeeee;
+    font-family: 'Shadows Into Light';
+}
+.modal--title {
+    font-size: 1.5em;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+/* New module modal styles */
+
+.modules--list {
+    text-align: center;
+}
+.modules--type {
+    padding: 10px;
+    border: 1px solid #eeeeee;
+    margin: 10px;
+    border-radius: 8px;
+}
+.modules--type:hover {
+    cursor: pointer;
+    background-color: rgba(240, 240, 240, 0.2);
+}
+
+/* Osciloscope Modal styles */
+
+.oscilatorForm {
+    display: flex;
+    flex-direction: column;
+}
+.label {
+    margin: 10px;
+}
+.input {
+    margin: 5px 15px;
+    background-color: #eeeeee;
+    color:#494949;
+    outline: none;
+    min-height: 34px;
+    font-family: 'Inconsolata';
+}
+.form--buttons {
+    display: inline;
+    margin: 15px 5px 5px auto;
+}
+.modal--buttons {
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    min-width: 34px;
+    min-height: 34px;
+    font-family: 'Shadows Into Light';
+}

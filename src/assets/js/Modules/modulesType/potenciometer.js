@@ -19,7 +19,7 @@ function createPotenciometerModule() {
 }
 
 class Potenciometer {
-    constructor(name = `Potenciometer ${potenciometerCounter}`, type = "potenciometer") {
+    constructor(name = `Pot ${potenciometerCounter}`, type = "potenciometer") {
         this.name = name;
         this.type = type;
         this.htmlCode = `

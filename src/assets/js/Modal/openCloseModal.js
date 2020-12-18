@@ -7,6 +7,7 @@ import {openAboutSecctionModal} from "./menuModals/aboutModal.js";
 import {showMenu} from "../Menu/responsiveMenu.js";
 import {createModule} from "../Modules/createModule.js";
 import {clearMainContent} from "../buttons/clear.js"
+import {changeOscilatorPropertyes, hiddeOscilatorModal} from "./modulesModals/oscilatorModal.js"
 
 
 const modal = document.getElementById("modal--section");
@@ -69,11 +70,16 @@ function removeModalEventListeners(openModal) {
     closeModal.removeEventListener("click", hiddeModal);
     window.removeEventListener("keyup", hiddeModal);
     modal.removeEventListener("click", hiddeModal);
-    if(openModal === "Modules") {
+    if(openModal === "modules") {
         const modulesTypes = document.querySelectorAll(".modules--type");
         modulesTypes.forEach(e => {
             e.removeEventListener("click", createModule);
         });
+    } else if(openModal === "oscilator") {
+        const save = document.getElementById("save");
+        const cancel = document.getElementById("cancel");
+        save.removeEventListener("click", changeOscilatorPropertyes);
+        cancel.removeEventListener("click", hiddeOscilatorModal);
     }
 }
 

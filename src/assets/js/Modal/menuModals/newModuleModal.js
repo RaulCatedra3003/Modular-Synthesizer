@@ -9,7 +9,7 @@ function openNewSecctionModal() {
     showModal();
     modalContent.innerHTML = "";
     modalContent.innerHTML = `
-    <h1 class="modal--title">New Module</h1>
+    <h2 class="modal--title">New Module</h2>
                 <ul class="modules--list">
                     <li class="modules--type" data-modulename="Audio Output">Audio Output</li>
                     <li class="modules--type" data-modulename="Oscilator">Oscilator</li>
