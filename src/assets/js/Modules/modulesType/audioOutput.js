@@ -33,13 +33,13 @@ class AudioOutput {
         <section class="module--inputs__audio--output">
             <section class="module--input__L">
                 <ul class="input--list">
-                    <li><button class="connection--input" id="audioL"></button></li>
+                    <li><button class="connection--input" id="audioL--input"></button></li>
                     <li>Left</li>
                 </ul>
             </section>
             <section class="module--input__R">
                 <ul class="input--list">
-                    <li><button class="connection--input" id="audioR"></button></li>
+                    <li><button class="connection--input" id="audioR--input"></button></li>
                     <li>Right</li>
                 </ul>
             </section>

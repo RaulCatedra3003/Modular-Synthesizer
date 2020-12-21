@@ -57,13 +57,13 @@ function changePotenciometerPropertyes() {
             e.name = `${nInput.value}`;
         }
     });
-    removeModalEventListeners("modulesModal");
+    removeModalEventListeners("modulesModalPotenciometer");
     addPrincipalEventListeners();
     modal.classList.toggle("hidden");
 }
 function hiddePotenciometerModal() {
     const modal = document.getElementById("modal--section");
-    removeModalEventListeners("modulesModal");
+    removeModalEventListeners("modulesModalPotenciometer");
     addPrincipalEventListeners();
     modal.classList.toggle("hidden");
 }

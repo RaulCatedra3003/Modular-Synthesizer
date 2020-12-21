@@ -9,6 +9,7 @@ import {createModule} from "../Modules/createModule.js";
 import {clearMainContent} from "../buttons/clear.js";
 import {changeOscilatorPropertyes, hiddeOscilatorModal} from "./modulesModals/oscilatorModal.js";
 import {changeAudioOutputPropertyes, hiddeAudioOutputModal} from "./modulesModals/audioOutputModal.js";
+import {changePotenciometerPropertyes, hiddePotenciometerModal} from "./modulesModals/potenciometerModal.js";
 
 
 const modal = document.getElementById("modal--section");
@@ -71,20 +72,21 @@ function removeModalEventListeners(openModal) {
     closeModal.removeEventListener("click", hiddeModal);
     window.removeEventListener("keyup", hiddeModal);
     modal.removeEventListener("click", hiddeModal);
+    const save = document.getElementById("save");
+    const cancel = document.getElementById("cancel");
     if(openModal === "menuModules") {
         const modulesTypes = document.querySelectorAll(".modules--type");
         modulesTypes.forEach(e => {
             e.removeEventListener("click", createModule);
         });
-    } else if(openModal === "modulesModal") {
-        const save = document.getElementById("save");
-        const cancel = document.getElementById("cancel");
+    } else if(openModal === "modulesModalOscilator") {
         save.removeEventListener("click", changeOscilatorPropertyes);
         cancel.removeEventListener("click", hiddeOscilatorModal);
+    } else if(openModal === "modulesModalAudioOutout") {
+        save.addEventListener("click", changeAudioOutputPropertyes);
+        cancel.addEventListener("click", hiddeAudioOutputModal);
+    } else if(openModal === "modulesModalPotenciometer") {
+        save.addEventListener("click", changePotenciometerPropertyes);
+        cancel.addEventListener("click", hiddePotenciometerModal);
     }
 }
-
-
-
-
-

@@ -41,13 +41,13 @@ function changeAudioOutputPropertyes() {
             e.name = `${nInput.value}`;
         }
     })
-    removeModalEventListeners("modulesModal");
+    removeModalEventListeners("modulesModalAudioOutout");
     addPrincipalEventListeners();
     modal.classList.toggle("hidden");
 }
 function hiddeAudioOutputModal() {
     const modal = document.getElementById("modal--section");
-    removeModalEventListeners("modulesModal");
+    removeModalEventListeners("modulesModalAudioOutout");
     addPrincipalEventListeners();
     modal.classList.toggle("hidden");
 }

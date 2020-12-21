@@ -43,7 +43,7 @@ class Oscilator {
         <h2 class="wave--name" id="oscilator${oscilatorCounter}--waveName">${this.waveType}</h2>
         <section class="module--inputs__oscilator">
             <ul class="input--list">
-                <li><button class="connection--input" id="oscilator${oscilatorCounter}--frequency"></button></li>
+                <li><button class="connection--input" id="oscilator${oscilatorCounter}--input"></button></li>
                 <li>Frequency</li>
             </ul>
         </section>

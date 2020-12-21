@@ -60,13 +60,13 @@ function changeOscilatorPropertyes() {
             e.changeWaveForm;
         }
     });
-    removeModalEventListeners("modulesModal");
+    removeModalEventListeners("modulesModalOscilator");
     addPrincipalEventListeners();
     modal.classList.toggle("hidden");
 }
 function hiddeOscilatorModal() {
     const modal = document.getElementById("modal--section");
-    removeModalEventListeners("modulesModal");
+    removeModalEventListeners("modulesModalOscilator");
     addPrincipalEventListeners();
     modal.classList.toggle("hidden");
 }
