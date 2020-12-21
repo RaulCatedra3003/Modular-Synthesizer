@@ -3,6 +3,7 @@ export {createPotenciometerModule, potenciometerCounter};
 import {addDraggableListeners} from "../dragableModules.js";
 import {arrayOfModules} from "../../synth/synthesizer.js";
 import {showPotenciometerModal} from "../../Modal/modulesModals/potenciometerModal.js";
+import {drawSvgLine} from "../../svg/svgLines.js";
 
 let potenciometerCounter = 1;
 
@@ -15,10 +16,14 @@ function createPotenciometerModule() {
     const potenciometer = document.getElementById(`potenciometer${potenciometerCounter}`);
     potenciometerCounter ++;
     const modules = document.querySelectorAll(".module");
+    const outputs = document.querySelectorAll(".connection--output");
     modules.forEach(e => {
         addDraggableListeners(e.getAttribute("id"));
     })
     potenciometer.addEventListener("dblclick", showPotenciometerModal);
+    outputs.forEach(e => {
+        e.addEventListener("click", drawSvgLine);
+    })
 }
 
 class Potenciometer {
@@ -32,7 +37,7 @@ class Potenciometer {
         <section class="module--output__potenciometer">
             <ul class="output--list">
                 <li class="outputName">Output</li>
-                <li><button class="connection--output"></button></li>
+                <li><button class="connection--output" id="potenciometer${potenciometerCounter}--output"></button></li>
             </ul>
         </section>`;
     }

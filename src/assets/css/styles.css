@@ -122,9 +122,19 @@ header {
     min-height: 100vh;
     overflow: scroll;
 }
+.svg--content {
+    position: absolute;
+    min-height: 100vh;
+    min-width: 100vh;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
 .main--content {
     position: relative;
     min-height: 100vh;
+    z-index: 2;
 }
 .main--buttons {
     position: fixed;

@@ -3,6 +3,7 @@ export {createOscilatorModule, oscilatorCounter};
 import {addDraggableListeners} from "../dragableModules.js";
 import {arrayOfModules} from "../../synth/synthesizer.js";
 import {showOscilatorModal} from "../../Modal/modulesModals/oscilatorModal.js";
+import {drawSvgLine} from "../../svg/svgLines.js";
 
 let oscilatorCounter = 1;
 
@@ -15,10 +16,18 @@ function createOscilatorModule(context) {
     const oscilator = document.getElementById(`oscilator${oscilatorCounter}`);
     oscilatorCounter ++;
     const modules = document.querySelectorAll(".module");
+    const inputs = document.querySelectorAll(".connection--input");
+    const outputs = document.querySelectorAll(".connection--output");
     modules.forEach(e => {
         addDraggableListeners(e.getAttribute("id"));
     });
     oscilator.addEventListener("dblclick", showOscilatorModal);
+    inputs.forEach(e => {
+        e.addEventListener("click", drawSvgLine);
+    })
+    outputs.forEach(e => {
+        e.addEventListener("click", drawSvgLine);
+    })
 }
 
 class Oscilator {
@@ -34,14 +43,14 @@ class Oscilator {
         <h2 class="wave--name" id="oscilator${oscilatorCounter}--waveName">${this.waveType}</h2>
         <section class="module--inputs__oscilator">
             <ul class="input--list">
-                <li><button class="connection--input"></button></li>
+                <li><button class="connection--input" id="oscilator${oscilatorCounter}--frequency"></button></li>
                 <li>Frequency</li>
             </ul>
         </section>
         <section class="module--output__oscilator">
             <ul class="output--list">
                 <li class="outputName">Output</li>
-                <li><button class="connection--output"></button></li>
+                <li><button class="connection--output" id="oscilator${oscilatorCounter}--output"></button></li>
             </ul>
         </section>`;
     }

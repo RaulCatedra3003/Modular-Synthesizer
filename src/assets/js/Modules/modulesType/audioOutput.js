@@ -3,6 +3,7 @@ export {createAudioOutputModule};
 import {addDraggableListeners} from "../dragableModules.js";
 import {arrayOfModules} from "../../synth/synthesizer.js";
 import {showAudioOutputModal} from "../../Modal/modulesModals/audioOutputModal.js";
+import {drawSvgLine} from "../../svg/svgLines.js";
 
 function createAudioOutputModule(context) {
     const mainContent = document.getElementById("main--content");
@@ -12,10 +13,14 @@ function createAudioOutputModule(context) {
     mainContent.appendChild(section);
     const audioOutput = document.getElementById("audioOutput");
     const modules = document.querySelectorAll(".module");
+    const inputs = document.querySelectorAll(".connection--input");
     modules.forEach(e => {
         addDraggableListeners(e.getAttribute("id"));
     })
     audioOutput.addEventListener("dblclick", showAudioOutputModal);
+    inputs.forEach(e => {
+        e.addEventListener("click", drawSvgLine);
+    })
 }
 
 class AudioOutput {
@@ -28,13 +33,13 @@ class AudioOutput {
         <section class="module--inputs__audio--output">
             <section class="module--input__L">
                 <ul class="input--list">
-                    <li><button class="connection--input"></button></li>
+                    <li><button class="connection--input" id="audioL"></button></li>
                     <li>Left</li>
                 </ul>
             </section>
             <section class="module--input__R">
                 <ul class="input--list">
-                    <li><button class="connection--input"></button></li>
+                    <li><button class="connection--input" id="audioR"></button></li>
                     <li>Right</li>
                 </ul>
             </section>
