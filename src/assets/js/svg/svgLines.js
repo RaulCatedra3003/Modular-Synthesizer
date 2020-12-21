@@ -9,7 +9,7 @@ function drawSvgLine (e) {
     const outputs = document.querySelectorAll(".connection--output");
     let clickedElement = e.target.id;
     const svgPosition = svgContent.getBoundingClientRect();
-    const existingLine = document.querySelectorAll("line");
+    const existingLines = document.querySelectorAll("line");
     inputs.forEach(e => {
         e.removeEventListener("click", drawSvgLine);
     })
@@ -17,11 +17,11 @@ function drawSvgLine (e) {
         e.removeEventListener("click", drawSvgLine);
     })
     if(clickedElement.includes("input")) {
-        if(existingLine.length === 0) {
+        if(existingLines.length === 0) {
             initLine();
             setTimeout(function() {window.addEventListener("click", finishSvgLineInput)}, 1000);
         } else {
-            existingLine.forEach(f => {
+            existingLines.forEach(f => {
                 if(f.dataset.connections.includes(clickedElement)) {
                     const line = document.getElementById(f.id);
                     svgContent.removeChild(line);
@@ -74,8 +74,8 @@ function finishSvgLineOutput(g) {
     let preData = line.dataset.connections;
     if(preData.includes("potenciometer")) {
         if(g.target.id.includes("oscilator") && g.target.id.includes("input")) {
-            const existingLine = document.querySelectorAll("line");
-            existingLine.forEach(f => {
+            const existingLines = document.querySelectorAll("line");
+            existingLines.forEach(f => {
                 if(f.dataset.connections.includes(g.target.id)) {
                     const line = document.getElementById(f.id);
                     svgContent.removeChild(line);
@@ -87,8 +87,8 @@ function finishSvgLineOutput(g) {
         }
     } else if(preData.includes("oscilator")) {
         if(g.target.id === "audioR--input" || g.target.id === "audioL--input") {
-            const existingLine = document.querySelectorAll("line");
-            existingLine.forEach(f => {
+            const existingLines = document.querySelectorAll("line");
+            existingLines.forEach(f => {
                 if(f.dataset.connections.includes(g.target.id)) {
                     const line = document.getElementById(f.id);
                     svgContent.removeChild(line);
