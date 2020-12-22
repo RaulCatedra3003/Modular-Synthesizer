@@ -39,17 +39,17 @@ class Oscilator {
         this.module = context.createOscillator();
         this.htmlCode = `
         <h2 class="module--name" id="oscilator${oscilatorCounter}--name">${this.name}</h2>
-        <h2 class="wave--title">Wave Type</h2>
+        <h2 class="wave--title" id="oscilator${oscilatorCounter}--waveTitle">Wave Type</h2>
         <h2 class="wave--name" id="oscilator${oscilatorCounter}--waveName">${this.waveType}</h2>
         <section class="module--inputs__oscilator">
             <ul class="input--list">
                 <li><button class="connection--input" id="oscilator${oscilatorCounter}--input"></button></li>
-                <li>Frequency</li>
+                <li id="oscilator${oscilatorCounter}--input__name">Frequency</li>
             </ul>
         </section>
         <section class="module--output__oscilator">
             <ul class="output--list">
-                <li class="outputName">Output</li>
+                <li class="outputName" id="oscilator${oscilatorCounter}--output__name">Output</li>
                 <li><button class="connection--output" id="oscilator${oscilatorCounter}--output"></button></li>
             </ul>
         </section>`;

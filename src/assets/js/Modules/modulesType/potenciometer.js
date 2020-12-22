@@ -36,7 +36,7 @@ class Potenciometer {
         <input type="range" class="input--potenciometer" min="0" max="10" id="potenciometer${potenciometerCounter}--input">
         <section class="module--output__potenciometer">
             <ul class="output--list">
-                <li class="outputName">Output</li>
+                <li class="outputName" id="potenciometer${potenciometerCounter}--output__name">Output</li>
                 <li><button class="connection--output" id="potenciometer${potenciometerCounter}--output"></button></li>
             </ul>
         </section>`;

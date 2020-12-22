@@ -25,13 +25,10 @@ function drawSvgLine (e) {
                 if(f.dataset.connections.includes(clickedElement)) {
                     const line = document.getElementById(f.id);
                     svgContent.removeChild(line);
-                    initLine();
-                    setTimeout(function() {window.addEventListener("click", finishSvgLineInput)}, 1000);
-                } else {
-                    initLine();
-                    setTimeout(function() {window.addEventListener("click", finishSvgLineInput)}, 1000);
                 }
             })
+            initLine();
+            setTimeout(function() {window.addEventListener("click", finishSvgLineInput)}, 1000);
         }
     } else if(clickedElement.includes("output")) {
         initLine();

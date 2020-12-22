@@ -2,6 +2,7 @@ export {addDraggableListeners};
 
 function addDraggableListeners(elementSelector) {
     var dragStartX, dragStartY;
+    var dragStartXLine, dragStartYLine;
     var objInitLeft, objInitTop;
     var lineInitX, lineInitY;
     var line;
@@ -9,7 +10,6 @@ function addDraggableListeners(elementSelector) {
     var inDrag = false;
     var dragTarget = document.querySelector(`#${elementSelector}`);
     dragTarget.addEventListener("mousedown", function (e) {
-        e.stopPropagation();
         if(dragTarget.id === "audioOutput") {
             let existingLines = document.querySelectorAll("line");
             existingLines.forEach(el => {
@@ -17,38 +17,38 @@ function addDraggableListeners(elementSelector) {
                     let connectionsArray = el.dataset.connections.split("//");
                     if(connectionsArray[0].includes("audio")) {
                         line = document.getElementById(`${el.id}`);
-                        inDrag = true;
-                        objInitLeft = dragTarget.offsetLeft;
-                        objInitTop = dragTarget.offsetTop;
-                        dragStartX = e.pageX;
-                        dragStartY = e.pageY;
-                        lineInitX = line.getAttribute("x1");
-                        lineInitY = line.getAttribute("y1");
-                        let finalPositionObject = {
-                            "line": line.id,
-                            "dragStartX": dragStartX,
-                            "dragStartY": dragStartY,
-                            "lineInitX": lineInitX,
-                            "lineInitY": lineInitY
-                        }
-                        arrayOfLines.push(finalPositionObject);
+                        createObjectToDragLine(e, 1);
                     }else if(connectionsArray[1].includes("audio")) {
                         line = document.getElementById(`${el.id}`);
-                        inDrag = true;
-                        objInitLeft = dragTarget.offsetLeft;
-                        objInitTop = dragTarget.offsetTop;
-                        dragStartX = e.pageX;
-                        dragStartY = e.pageY;
-                        lineInitX = line.getAttribute("x2");
-                        lineInitY = line.getAttribute("y2");
-                        let finalPositionObject = {
-                            "line": line.id,
-                            "dragStartX": dragStartX,
-                            "dragStartY": dragStartY,
-                            "lineInitX": lineInitX,
-                            "lineInitY": lineInitY
-                        }
-                        arrayOfLines.push(finalPositionObject);
+                        createObjectToDragLine(e, 2);
+                    }
+                }
+            })
+        } else if(dragTarget.id.includes("oscilator")) {
+            let existingLines = document.querySelectorAll("line");
+            existingLines.forEach(el => {
+                if(el.dataset.connections.includes(dragTarget.id)) {
+                    let connectionsArray = el.dataset.connections.split("//");
+                    if(connectionsArray[0].includes("oscilator")) {
+                        line = document.getElementById(`${el.id}`);
+                        createObjectToDragLine(e, 1);
+                    }else if(connectionsArray[1].includes("oscilator")) {
+                        line = document.getElementById(`${el.id}`);
+                        createObjectToDragLine(e, 2);
+                    }
+                }
+            })
+        } else if(dragTarget.id.includes("potenciometer")) {
+            let existingLines = document.querySelectorAll("line");
+            existingLines.forEach(el => {
+                if(el.dataset.connections.includes(dragTarget.id)) {
+                    let connectionsArray = el.dataset.connections.split("//");
+                    if(connectionsArray[0].includes("potenciometer")) {
+                        line = document.getElementById(`${el.id}`);
+                        createObjectToDragLine(e, 1);
+                    }else if(connectionsArray[1].includes("potenciometer")) {
+                        line = document.getElementById(`${el.id}`);
+                        createObjectToDragLine(e, 2);
                     }
                 }
             })
@@ -73,21 +73,35 @@ function addDraggableListeners(elementSelector) {
                     let line = document.getElementById(f.line);
                     let connectionsArray = line.dataset.connections.split("//");
                     if(connectionsArray[0].includes("audio")) {
-                        const lineToChange = document.getElementById(f.line);
-                        let diferenceX = e.clientX - f.dragStartX;
-                        let diferenceY = e.clientY - f.dragStartY;
-                        let finalX = parseInt(f.lineInitX, 10) + diferenceX;
-                        let finalY = parseInt(f.lineInitY, 10) + diferenceY;
-                        lineToChange.setAttribute("x1", `${finalX}`);
-                        lineToChange.setAttribute("y1", `${finalY}`);
+                        dragLine(e, f, 1);
                     } else if(connectionsArray[1].includes("audio")) {
-                        const lineToChange = document.getElementById(f.line);
-                        let diferenceX = e.clientX - f.dragStartX;
-                        let diferenceY = e.clientY - f.dragStartY;
-                        let finalX = parseInt(f.lineInitX, 10) + diferenceX;
-                        let finalY = parseInt(f.lineInitY, 10) + diferenceY;
-                        lineToChange.setAttribute("x2", `${finalX}`);
-                        lineToChange.setAttribute("y2", `${finalY}`);
+                        dragLine(e, f, 2);
+                    }
+                })
+                arrayOfLines = [];
+            }
+        } else if(e.target.id.includes("oscilator")) {
+            if(arrayOfLines.length !== 0) {
+                arrayOfLines.forEach(f => {
+                    let line = document.getElementById(f.line);
+                    let connectionsArray = line.dataset.connections.split("//");
+                    if(connectionsArray[0].includes(e.target.id)) {
+                        dragLine(e, f, 1);
+                    } else if(connectionsArray[1].includes(e.target.id)) {
+                        dragLine(e, f, 2);
+                    }
+                })
+                arrayOfLines = [];
+            }
+        } else if(e.target.id.includes("potenciometer")) {
+            if(arrayOfLines.length !== 0) {
+                arrayOfLines.forEach(f => {
+                    let line = document.getElementById(f.line);
+                    let connectionsArray = line.dataset.connections.split("//");
+                    if(connectionsArray[0].includes(e.target.id)) {
+                        dragLine(e, f, 1);
+                    } else if(connectionsArray[1].includes(e.target.id)) {
+                        dragLine(e, f, 2);
                     }
                 })
                 arrayOfLines = [];
@@ -95,4 +109,32 @@ function addDraggableListeners(elementSelector) {
         }
         inDrag = false;
     });
+    function createObjectToDragLine(e, f) {
+        inDrag = true;
+        objInitLeft = dragTarget.offsetLeft;
+        objInitTop = dragTarget.offsetTop;
+        dragStartX = e.pageX;
+        dragStartY = e.pageY;
+        dragStartXLine = e.clientX;
+        dragStartYLine = e.clientY;
+        lineInitX = line.getAttribute(`x${f}`);
+        lineInitY = line.getAttribute(`y${f}`);
+        let finalPositionObject = {
+            "line": line.id,
+            "dragStartX": dragStartXLine,
+            "dragStartY": dragStartYLine,
+            "lineInitX": lineInitX,
+            "lineInitY": lineInitY
+        }
+        arrayOfLines.push(finalPositionObject);
+    }
+    function dragLine(e, f, g) {
+        const lineToChange = document.getElementById(f.line);
+        let diferenceX = e.clientX - f.dragStartX;
+        let diferenceY = e.clientY - f.dragStartY;
+        let finalX = parseInt(f.lineInitX, 10) + diferenceX;
+        let finalY = parseInt(f.lineInitY, 10) + diferenceY;
+        lineToChange.setAttribute(`x${g}`, `${finalX}`);
+        lineToChange.setAttribute(`y${g}`, `${finalY}`);
+}
 }
