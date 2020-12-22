@@ -20,7 +20,7 @@ function createModule(e) {
             audioOutputExist = false;
         } else {
             arrayOfModules.forEach(e => {
-                if(e.type === "audioOutput") {
+                if(e.type === "AudioOutput") {
                     audioOutputExist = true;
                 }
             });
