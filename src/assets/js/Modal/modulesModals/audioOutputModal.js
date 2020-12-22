@@ -37,7 +37,7 @@ function changeAudioOutputPropertyes() {
     moduleName.innerHTML = `${nInput.value}`;
     elementTarguet.dataset.name = `${nInput.value}`;
     arrayOfModules.forEach(e => {
-        if(e.type = "audioOutput") {
+        if(e.type === "audioOutput") {
             e.name = `${nInput.value}`;
         }
     })

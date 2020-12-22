@@ -10,7 +10,7 @@ import {clearMainContent} from "../buttons/clear.js";
 import {changeOscilatorPropertyes, hiddeOscilatorModal} from "./modulesModals/oscilatorModal.js";
 import {changeAudioOutputPropertyes, hiddeAudioOutputModal} from "./modulesModals/audioOutputModal.js";
 import {changePotenciometerPropertyes, hiddePotenciometerModal} from "./modulesModals/potenciometerModal.js";
-
+import {startSound} from "../synth/synthesizer.js";
 
 const modal = document.getElementById("modal--section");
 const closeModal = document.getElementById("close--modal");
@@ -19,6 +19,7 @@ const savedSecction = document.getElementById("SAVED");
 const helpSecction = document.getElementById("HELP");
 const aboutSecction = document.getElementById("ABOUT");
 const clearButton = document.getElementById("clear");
+const playButton = document.getElementById("play");
 
 
 function showModal() {
@@ -50,6 +51,7 @@ function addPrincipalEventListeners() {
     aboutSecction.addEventListener("click", openAboutSecctionModal);
     hamburguerButton.addEventListener("click", showMenu);
     clearButton.addEventListener("click", clearMainContent);
+    playButton.addEventListener("click", startSound);
 }
 
 function removePincipalEventListeners() {
@@ -59,6 +61,7 @@ function removePincipalEventListeners() {
     aboutSecction.removeEventListener("click", openAboutSecctionModal);
     hamburguerButton.removeEventListener("click", showMenu);
     clearButton.removeEventListener("click", clearMainContent);
+    playButton.removeEventListener("click", startSound);
 }
 
 

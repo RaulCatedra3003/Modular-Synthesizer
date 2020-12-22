@@ -54,10 +54,10 @@ function changeOscilatorPropertyes() {
     elementTarguet.dataset.name = `${nInput.value}`;
     elementTarguet.dataset.wave = `${nWInput.value}`;
     arrayOfModules.forEach(e => {
-        if(e.id = elementTarguet.id) {
+        if(e.id === elementTarguet.id) {
             e.name = `${nInput.value}`;
             e.waveType = `${nWInput.value}`;
-            e.changeWaveForm;
+            e.changeWave;
         }
     });
     removeModalEventListeners("modulesModalOscilator");
@@ -69,4 +69,5 @@ function hiddeOscilatorModal() {
     removeModalEventListeners("modulesModalOscilator");
     addPrincipalEventListeners();
     modal.classList.toggle("hidden");
+    elementTarguet = "";
 }

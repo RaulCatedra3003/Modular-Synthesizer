@@ -7,7 +7,8 @@ import {openNewSecctionModal} from "./Modal/menuModals/newModuleModal.js";
 import {openSavedSecctionModal} from "./Modal/menuModals/savedModal.js";
 import {openHelpSecctionModal} from "./Modal/menuModals/helpModal.js";
 import {openAboutSecctionModal} from "./Modal/menuModals/aboutModal.js";
-import {clearMainContent} from "./buttons/clear.js"
+import {clearMainContent} from "./buttons/clear.js";
+import {startSound} from "./synth/synthesizer.js";
 
 
 const hamburguerButton = document.getElementById("hamburguerButton");
@@ -16,6 +17,7 @@ const savedSecction = document.getElementById("SAVED");
 const helpSecction = document.getElementById("HELP");
 const aboutSecction = document.getElementById("ABOUT");
 const clearButton = document.getElementById("clear");
+const playButton = document.getElementById("play");
 
 
 hamburguerButton.addEventListener("click", showMenu);
@@ -24,3 +26,4 @@ savedSecction.addEventListener("click", openSavedSecctionModal);
 helpSecction.addEventListener("click", openHelpSecctionModal);
 aboutSecction.addEventListener("click", openAboutSecctionModal);
 clearButton.addEventListener("click", clearMainContent);
+playButton.addEventListener("click", startSound);

@@ -14,6 +14,7 @@ function createPotenciometerModule() {
     const section = newModule.moduleShow;
     mainContent.appendChild(section);
     const potenciometer = document.getElementById(`potenciometer${potenciometerCounter}`);
+    const potencimoeterRange = document.getElementById(`potenciometer${potenciometerCounter}--input`);
     potenciometerCounter ++;
     const modules = document.querySelectorAll(".module");
     const outputs = document.querySelectorAll(".connection--output");
@@ -24,16 +25,19 @@ function createPotenciometerModule() {
     outputs.forEach(e => {
         e.addEventListener("click", drawSvgLine);
     })
+    potencimoeterRange.addEventListener("mousemove", function(e) {
+        e.stopPropagation();
+    })
 }
 
 class Potenciometer {
-    constructor(name = `Pot ${potenciometerCounter}`, id = `potenciometer${potenciometerCounter}`, type = "potenciometer") {
+    constructor(name = `Pot ${potenciometerCounter}`, id = `potenciometer${potenciometerCounter}`, type = "Potenciometer") {
         this.name = name;
         this.id = id;
         this.type = type;
         this.htmlCode = `
         <h2 class="module--name" id="potenciometer${potenciometerCounter}--name">${this.name}</h2>
-        <input type="range" class="input--potenciometer" min="0" max="10" id="potenciometer${potenciometerCounter}--input">
+        <input type="range" class="input--potenciometer" min="0" max="1000" value="440" id="potenciometer${potenciometerCounter}--input">
         <section class="module--output__potenciometer">
             <ul class="output--list">
                 <li class="outputName" id="potenciometer${potenciometerCounter}--output__name">Output</li>

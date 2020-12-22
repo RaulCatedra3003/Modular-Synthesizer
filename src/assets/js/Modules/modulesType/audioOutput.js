@@ -24,10 +24,13 @@ function createAudioOutputModule(context) {
 }
 
 class AudioOutput {
-    constructor(context, name = "Audio Output", type = "audioOutput") {
+    constructor(context, name = "Audio Output", type = "AudioOutput", id = "audioOutput") {
+        this.context = context;
         this.name = name;
         this.type = type;
-        this.module = context.createStereoPanner();
+        this.id = id;
+        this.pannerL = this.context.createStereoPanner();
+        this.pannerR = this.context.createStereoPanner();
         this.htmlCode = `
         <h2 class="module--name" id="audioOutput--name">${this.name}</h2>
         <section class="module--inputs__audio--output">
@@ -46,7 +49,7 @@ class AudioOutput {
         </section>`
     }
 
-    get connect() {
+    get dConnect() {
         return this.connectSpeakers();
     }
     get moduleShow() {
@@ -54,13 +57,16 @@ class AudioOutput {
     }
 
     connectSpeakers() {
-        return this.module.connect(context.destination);
+        this.pannerL.connect(this.context.destination);
+        this.pannerL.pan.value = -1;
+        this.pannerR.connect(this.context.destination);
+        this.pannerR.pan.value = 1;
     }
     moduleCreate() {
         const section = document.createElement("section");
         section.classList.add("audio--output");
         section.classList.add("module");
-        section.setAttribute("id", "audioOutput");
+        section.setAttribute("id", this.id);
         section.dataset.name = this.name;
         section.innerHTML = this.htmlCode;
         return section;

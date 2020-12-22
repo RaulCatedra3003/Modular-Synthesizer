@@ -53,7 +53,7 @@ function changePotenciometerPropertyes() {
     moduleInput.setAttribute("min", `${minValueInput.value}`);
     elementTarguet.dataset.name = `${nInput.value}`;
     arrayOfModules.forEach(e => {
-        if(e.id = elementTarguet.id) {
+        if(e.id === elementTarguet.id) {
             e.name = `${nInput.value}`;
         }
     });

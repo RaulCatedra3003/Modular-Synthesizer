@@ -31,12 +31,14 @@ function createOscilatorModule(context) {
 }
 
 class Oscilator {
-    constructor(context, name = `Oscilator ${oscilatorCounter}`, id = `oscilator${oscilatorCounter}`, type = "oscilator") {
+    constructor(context, name = `Oscilator ${oscilatorCounter}`, type = "Oscilator", id = `oscilator${oscilatorCounter}`, waveType = "Sine", frequency = 440) {
+        this.context = context;
         this.name = name;
-        this.id = id;
         this.type = type;
-        this.waveType = "Sine";
-        this.module = context.createOscillator();
+        this.id = id;
+        this.waveType = waveType;
+        this.frequency = frequency;
+        this.module = this.context.createOscillator();
         this.htmlCode = `
         <h2 class="module--name" id="oscilator${oscilatorCounter}--name">${this.name}</h2>
         <h2 class="wave--title" id="oscilator${oscilatorCounter}--waveTitle">Wave Type</h2>
@@ -58,9 +60,11 @@ class Oscilator {
     get moduleShow() {
         return this.moduleCreate();
     }
-
     get changeWave() {
         return this.changeWaveForm();
+    }
+    get changeFrequency() {
+        return this.changeFrequencyNumber();
     }
 
     moduleCreate() {
@@ -73,8 +77,10 @@ class Oscilator {
         section.innerHTML = this.htmlCode;
         return section;
     }
-
     changeWaveForm() {
         this.module.type = this.waveType.toLowerCase();
+    }
+    changeFrequencyNumber() {
+        this.module.frequency.value = this.frequency;
     }
 }
