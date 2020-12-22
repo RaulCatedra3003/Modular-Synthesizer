@@ -94,7 +94,6 @@ function startSound() {
                         arrayOfModules[modulePositionInArray].module.connect(arrayOfModules[moduleToConnectPositionInArray].pannerR);
                     }
                 } else if(idsToLook !== []) {
-                    console.log(el);
                     let position;
                     for(let i = 0; i < el.length; i++) {
                         if(el[i].includes("potenciometer")) {
