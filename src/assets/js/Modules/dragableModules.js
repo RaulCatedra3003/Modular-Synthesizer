@@ -9,12 +9,12 @@ function addDraggableListeners(elementSelector) {
     var inDrag = false;
     var dragTarget = document.querySelector(`#${elementSelector}`);
     dragTarget.addEventListener("mousedown", function (e) {
+        e.stopPropagation();
         if(dragTarget.id === "audioOutput") {
-            const existingLines = document.querySelectorAll("line");
+            let existingLines = document.querySelectorAll("line");
             existingLines.forEach(el => {
                 if(el.dataset.connections.includes("audio")) {
-                    let connectionsArray = el.dataset.connections;
-                    connectionsArray = connectionsArray.split("//");
+                    let connectionsArray = el.dataset.connections.split("//");
                     if(connectionsArray[0].includes("audio")) {
                         line = document.getElementById(`${el.id}`);
                         inDrag = true;
@@ -26,6 +26,10 @@ function addDraggableListeners(elementSelector) {
                         lineInitY = line.getAttribute("y1");
                         let finalPositionObject = {
                             "line": line.id,
+                            "dragStartX": dragStartX,
+                            "dragStartY": dragStartY,
+                            "lineInitX": lineInitX,
+                            "lineInitY": lineInitY
                         }
                         arrayOfLines.push(finalPositionObject);
                     }else if(connectionsArray[1].includes("audio")) {
@@ -39,6 +43,10 @@ function addDraggableListeners(elementSelector) {
                         lineInitY = line.getAttribute("y2");
                         let finalPositionObject = {
                             "line": line.id,
+                            "dragStartX": dragStartX,
+                            "dragStartY": dragStartY,
+                            "lineInitX": lineInitX,
+                            "lineInitY": lineInitY
                         }
                         arrayOfLines.push(finalPositionObject);
                     }
@@ -52,42 +60,38 @@ function addDraggableListeners(elementSelector) {
         dragStartY = e.pageY;
     });
     document.addEventListener("mousemove", function (e) {
-    if (!inDrag) {
-        return;
-    }
-    dragTarget.style.left = objInitLeft + e.pageX - dragStartX + "px";
-    dragTarget.style.top = objInitTop + e.pageY - dragStartY + "px";
+        if (!inDrag) {
+            return;
+        }
+        dragTarget.style.left = objInitLeft + e.pageX - dragStartX + "px";
+        dragTarget.style.top = objInitTop + e.pageY - dragStartY + "px";
     });
     document.addEventListener("mouseup", function (e) {
         if(e.target.id.includes("audio")) {
             if(arrayOfLines.length !== 0) {
-                console.log(arrayOfLines);
                 arrayOfLines.forEach(f => {
-                    const lineToSee = document.getElementById(f.line);
-                    let connectionsArray = lineToSee.dataset.connections.split("//");
+                    let line = document.getElementById(f.line);
+                    let connectionsArray = line.dataset.connections.split("//");
                     if(connectionsArray[0].includes("audio")) {
-                        console.log("aqui");
                         const lineToChange = document.getElementById(f.line);
-                        let diferenceX = e.clientX - dragStartX;
-                        let finalX = parseInt(lineInitX, 10) + diferenceX;
-                        let diferenceY = e.clientY - dragStartY;
-                        let finalY = parseInt(lineInitY, 10) + diferenceY;
-                        lineToChange.x1 = `${finalX}`;
-                        lineToChange.y1 = `${finalY}`;
+                        let diferenceX = e.clientX - f.dragStartX;
+                        let diferenceY = e.clientY - f.dragStartY;
+                        let finalX = parseInt(f.lineInitX, 10) + diferenceX;
+                        let finalY = parseInt(f.lineInitY, 10) + diferenceY;
+                        lineToChange.setAttribute("x1", `${finalX}`);
+                        lineToChange.setAttribute("y1", `${finalY}`);
                     } else if(connectionsArray[1].includes("audio")) {
-                        console.log("aqui2");
                         const lineToChange = document.getElementById(f.line);
-                        let diferenceX = e.clientX - dragStartX;
-                        let finalX = parseInt(lineInitX, 10) + diferenceX;
-                        let diferenceY = e.clientY - dragStartY;
-                        let finalY = parseInt(lineInitY, 10) + diferenceY;
+                        let diferenceX = e.clientX - f.dragStartX;
+                        let diferenceY = e.clientY - f.dragStartY;
+                        let finalX = parseInt(f.lineInitX, 10) + diferenceX;
+                        let finalY = parseInt(f.lineInitY, 10) + diferenceY;
                         lineToChange.setAttribute("x2", `${finalX}`);
                         lineToChange.setAttribute("y2", `${finalY}`);
-                        console.log("aqui 3");
                     }
                 })
+                arrayOfLines = [];
             }
-        arrayOfLines = [];
         }
         inDrag = false;
     });

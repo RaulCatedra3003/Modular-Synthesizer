@@ -104,6 +104,7 @@ function finishSvgLineOutput(g) {
 function createLine() {
     window.removeEventListener("mousemove", changeSvgLineDestination);
     window.removeEventListener("click", finishSvgLineOutput);
+    window.removeEventListener("click", finishSvgLineInput);
     lineCounter++;
     const inputs = document.querySelectorAll(".connection--input");
     const outputs = document.querySelectorAll(".connection--output");
