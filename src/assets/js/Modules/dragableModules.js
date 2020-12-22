@@ -136,5 +136,5 @@ function addDraggableListeners(elementSelector) {
         let finalY = parseInt(f.lineInitY, 10) + diferenceY;
         lineToChange.setAttribute(`x${g}`, `${finalX}`);
         lineToChange.setAttribute(`y${g}`, `${finalY}`);
-}
+    }
 }
