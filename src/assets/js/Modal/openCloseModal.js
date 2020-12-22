@@ -11,6 +11,8 @@ import {changeOscilatorPropertyes, hiddeOscilatorModal} from "./modulesModals/os
 import {changeAudioOutputPropertyes, hiddeAudioOutputModal} from "./modulesModals/audioOutputModal.js";
 import {changePotenciometerPropertyes, hiddePotenciometerModal} from "./modulesModals/potenciometerModal.js";
 import {startSound} from "../synth/synthesizer.js";
+import {saveSynth, saveSynthInLocalStorage, hiddeSaveModal} from "../buttons/save.js";
+
 
 const modal = document.getElementById("modal--section");
 const closeModal = document.getElementById("close--modal");
@@ -20,6 +22,7 @@ const helpSecction = document.getElementById("HELP");
 const aboutSecction = document.getElementById("ABOUT");
 const clearButton = document.getElementById("clear");
 const playButton = document.getElementById("play");
+const saveButton = document.getElementById("save");
 
 
 function showModal() {
@@ -52,6 +55,7 @@ function addPrincipalEventListeners() {
     hamburguerButton.addEventListener("click", showMenu);
     clearButton.addEventListener("click", clearMainContent);
     playButton.addEventListener("click", startSound);
+    saveButton.addEventListener("click", saveSynth);
 }
 
 function removePincipalEventListeners() {
@@ -62,6 +66,7 @@ function removePincipalEventListeners() {
     hamburguerButton.removeEventListener("click", showMenu);
     clearButton.removeEventListener("click", clearMainContent);
     playButton.removeEventListener("click", startSound);
+    saveButton.removeEventListener("click", saveSynth);
 }
 
 
@@ -91,5 +96,8 @@ function removeModalEventListeners(openModal) {
     } else if(openModal === "modulesModalPotenciometer") {
         save.addEventListener("click", changePotenciometerPropertyes);
         cancel.addEventListener("click", hiddePotenciometerModal);
+    } else if(openModal === "save") {
+        save.removeEventListener("click", saveSynthInLocalStorage);
+        cancel.removeEventListener("click", hiddeSaveModal);
     }
 }
