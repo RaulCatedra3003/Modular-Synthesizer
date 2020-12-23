@@ -1,12 +1,12 @@
 export {arrayOfModules, startSound};
 
 var arrayOfModules = [];
-var arrayOfLines = [];
-let idsToLook = [];
 
 const playButton = document.getElementById("play");
 
 function startSound() {
+    var arrayOfLines = [];
+    let idsToLook = [];
     playButton.removeEventListener("click", startSound);
     if(arrayOfModules.length === 0) {
         alert("Yo need to create the modules")
@@ -26,11 +26,6 @@ function startSound() {
                 })
             })
             arrayOfLines.forEach(el => {
-                el.forEach(g => {
-                    if(g.includes("potenciometer")) {
-                        idsToLook.push(el);
-                    }
-                })
                 if(el.includes("audioL--input")) {
                     let position = el.indexOf("audioL--input");
                     if(position === 0) {
@@ -148,7 +143,6 @@ function startSound() {
                 })
                 playButton.textContent = "Stop";
                 playButton.addEventListener("click", stopSound);
-                arrayOfLines = [];
             }
         }
     }
@@ -168,7 +162,6 @@ function stopSound() {
         arrayOfModules[e].changeWave;
         arrayOfModules[e].changeFrequency;
     })
-    idsToLook = [];
     playButton.textContent = "Play";
     playButton.addEventListener("click", startSound);
 }

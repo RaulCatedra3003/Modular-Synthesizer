@@ -1,4 +1,4 @@
-export {saveSynth, saveSynthInLocalStorage, hiddeSaveModal};
+export {saveSynth, saveSynthInLocalStorage, hiddeSaveModal, saveObjectInLocalStorage, objectToSaveInLocalStorage};
 
 import {arrayOfModules} from "../synth/synthesizer.js";
 import {showModal} from "../Modal/openCloseModal.js";
@@ -34,14 +34,55 @@ function saveSynth() {
 function saveSynthInLocalStorage() {
     const modal = document.getElementById("modal--section");
     const sName = document.getElementById("modularSynthName");
+    const lines = document.querySelectorAll("line");
+    const modules = document.querySelectorAll(".module");
+    let arrayOfLines = [];
+    let arrayOfModulesToSave = [];
+    lines.forEach(k => {
+        let lineObject = {
+            "x1": k.getAttribute("x1"),
+            "y1": k.getAttribute("y1"),
+            "x2": k.getAttribute("x2"),
+            "y2": k.getAttribute("y2"),
+            "connections": k.dataset.connections
+        }
+        arrayOfLines.push(lineObject);
+    })
+    modules.forEach(l => {
+        if(l.id.includes("audio")) {
+            let moduleObject = {
+                "name": l.dataset.name,
+                "type": "AudioOutput",
+                "left": l.style.left,
+                "top": l.style.top
+            }
+            arrayOfModulesToSave.push(moduleObject);
+        } else if(l.id.includes("oscilator")) {
+            let moduleObject = {
+                "name": l.dataset.name,
+                "type": "Oscilator",
+                "wave": l.dataset.wave,
+                "left": l.style.left,
+                "top": l.style.top
+            }
+            arrayOfModulesToSave.push(moduleObject);
+        } else if(l.id.includes("potenciometer")) {
+            console.log("pot");
+            let moduleObject = {
+                "name": l.dataset.name,
+                "type": "Potenciometer",
+                "left": l.style.left,
+                "top": l.style.top
+            }
+            arrayOfModulesToSave.push(moduleObject);
+        }
+    })
     if(sName.value === ""){
-        /* alert("You need to enter a name for the synth"); */
-        console.log(objectToSaveInLocalStorage);
+        alert("You need to enter a name for the synth");
     } else {
-        let lines = document.querySelectorAll("line");
         objectToSaveInLocalStorage[`${sName.value}`] = {
-            "arrayOfModules": arrayOfModules,
-            "arrayOfLines": lines
+            "arrayOfModules": arrayOfModulesToSave,
+            "arrayOfLines": arrayOfLines
         }
         let objectString = JSON.stringify(objectToSaveInLocalStorage);
         localStorage.setItem('SYNTHS', objectString);

@@ -1,4 +1,4 @@
-export {createAudioOutputModule};
+export {createAudioOutputModule, AudioOutput};
 
 import {addDraggableListeners} from "../dragableModules.js";
 import {arrayOfModules} from "../../synth/synthesizer.js";

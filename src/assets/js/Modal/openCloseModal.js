@@ -12,7 +12,7 @@ import {changeAudioOutputPropertyes, hiddeAudioOutputModal} from "./modulesModal
 import {changePotenciometerPropertyes, hiddePotenciometerModal} from "./modulesModals/potenciometerModal.js";
 import {startSound} from "../synth/synthesizer.js";
 import {saveSynth, saveSynthInLocalStorage, hiddeSaveModal} from "../buttons/save.js";
-
+import {createSynthFromLocalStorage} from "./menuModals/savedModal.js";
 
 const modal = document.getElementById("modal--section");
 const closeModal = document.getElementById("close--modal");
@@ -99,5 +99,10 @@ function removeModalEventListeners(openModal) {
     } else if(openModal === "save") {
         save.removeEventListener("click", saveSynthInLocalStorage);
         cancel.removeEventListener("click", hiddeSaveModal);
+    } else if(openModal === "savedSynth") {
+        const allSavedSynths = document.querySelectorAll(".modules--type");
+        allSavedSynths.forEach(e => {
+            e.removeEventListener("click", createSynthFromLocalStorage);
+        })
     }
 }

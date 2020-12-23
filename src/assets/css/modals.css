@@ -88,3 +88,35 @@
     min-height: 34px;
     font-family: 'Shadows Into Light';
 }
+
+/* Help modal styles */
+
+.modal--help {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+/* About modal styles */
+
+.modal--about {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.modal--link {
+    position: relative;
+    margin: 0 auto;
+    text-decoration: none;
+}
+.modal--link:link {
+    color: #eeeeee;
+}
+.modal--link:visited {
+    color: #eeeeee;
+}
+.modal--link:active {
+    color: #eeeeee;
+}
+.modal--link:hover {
+    color: #bebebe;
+}

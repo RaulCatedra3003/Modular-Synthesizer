@@ -1,4 +1,4 @@
-export {createOscilatorModule, oscilatorCounter};
+export {createOscilatorModule, oscilatorCounter, Oscilator};
 
 import {addDraggableListeners} from "../dragableModules.js";
 import {arrayOfModules} from "../../synth/synthesizer.js";

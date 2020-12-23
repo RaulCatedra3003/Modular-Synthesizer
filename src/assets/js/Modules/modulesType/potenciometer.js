@@ -1,4 +1,4 @@
-export {createPotenciometerModule, potenciometerCounter};
+export {createPotenciometerModule, potenciometerCounter, Potenciometer};
 
 import {addDraggableListeners} from "../dragableModules.js";
 import {arrayOfModules} from "../../synth/synthesizer.js";
